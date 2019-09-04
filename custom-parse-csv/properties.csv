@@ -1,0 +1,213 @@
+-2,DOC_ID,hex,sdocid,Document id,FALSE,,Да
+-1,DOC_IS_ACTIVE,int,sdocstatus,Is active,FALSE,,Да
+-3,DOC_STATUSES,int,faultIdArray,Document status,TRUE,,
+5364,PROP_360_SOURCE_PATH,string,tag_5364,Исходники обзор 360,FALSE,,
+5718,PROP_ADVERT_IS_DRIVE,bool,tag_5718,флаг услуги drive,FALSE,,
+5795,PROP_ADVERT_IS_PAID_PUB,bool,tag_5795,Платная публикация объявления,FALSE,,
+4159,PROP_ADVERT_IS_PREMIUM,bool,tag_758,Премиум объявление,FALSE,,
+5344,PROP_ADVERT_IS_TURBO,bool,tag_807,флаг услуги,FALSE,,
+5797,PROP_ADVERT_PAID_PUB_END_DATE,datetime,tag_5797,Дата окончания действия услуги платной публикации объявления,FALSE,,
+5796,PROP_ADVERT_PAID_PUB_START_DATE,datetime,tag_5796,Дата начала действия услуги платной публикации объявления,FALSE,,
+5685,PROP_BRAND_NATIVE_LAND,tokenize,tag_5685_arr,Родина бренда,TRUE,,
+2341,PROP_BRAND_ORIGIN,tokenize,tag_755,Принадлежность к отечеству,FALSE,Да,
+2239,PROP_CARAUDIO_FORMAT,tokenize,tag_743_arr,Поддержка форматов в автомагнитоле,TRUE,Да,
+2237,PROP_CARAUDIO_MEDIA,tokenize,tag_742_arr,Поддержка носителей в автомагнитоле,TRUE,Да,
+1157,PROP_CAR_ABS,exist,tag_651,Антиблокировочная система тормозов (ABS),FALSE,Да,
+1073,PROP_CAR_ACCELERATION_TIME,float,tag_571_arr,Время разгона до 100 км/ч,TRUE,,
+1141,PROP_CAR_ADVERT_DESC,string,prop_1141,Текст объявления,FALSE,,Да
+1123,PROP_CAR_ADVERT_IS_HAGGLE,exist,tag_621,Возможен торг,FALSE,Да,Да
+739,PROP_CAR_ADVERT_OWNER_TYPE,tokenize,tag_741,Тип владельца объявления,FALSE,Да,Да
+5780,PROP_CAR_ADVERT_SHORT_DESC,string,tag_5780,Краткий текст объявления,FALSE,,
+1206,PROP_CAR_ADVERT_WINTER_TIRES,exist,tag_700,Зимние шины,FALSE,Да,
+1168,PROP_CAR_AEROGRAPHY,exist,tag_662,Аэрография,FALSE,,Да
+1164,PROP_CAR_AIRBAG_TYPE,tokenize,tag_658_arr,Тип подушек безопасности,TRUE,Да,
+1178,PROP_CAR_AIR_CONDITION,exist,tag_672,Кондиционер,FALSE,,
+1202,PROP_CAR_ALARM,exist,tag_696,Сигнализация,FALSE,Да,
+1021,PROP_CAR_BODY_NAME,tokenize_multi,tag_814,Название кузова,FALSE,,
+1145,PROP_CAR_BODY_TYPE,tokenize_multi,tag_520,Тип кузова,FALSE,Да,Да
+465,PROP_CAR_BRAND,tokenize_multi,tag_465,Марка автомобиля,FALSE,Да,Да
+5222,PROP_CAR_BRAND_CLASS,tokenize,tag_771,Класс бренда автомобиля,FALSE,,
+5698,PROP_CAR_BRAND_COLOR,tokenize,tag_5698,Цвет производителя,FALSE,,
+3467,PROP_CAR_BRAND_TEXT_VALUE,string,prop_3467,Значение бренда в виде текста,FALSE,,
+5365,PROP_CAR_CATALOG_IMAGES_NEW,string,tag_5365,"Фотографии, дополняемые из каталога",FALSE,,
+1200,PROP_CAR_CENTRAL_LOCK,exist,tag_694,Центральный замок,FALSE,Да,
+5815,PROP_CAR_CERTIFICATION_PROGRAM,int,tag_5815,Сертификационная программа,FALSE,Да,Да
+1026,PROP_CAR_CLASS,tokenize,tag_524,Класс автомобиля,FALSE,,
+2241,PROP_CAR_CLIMATE,tokenize,tag_744,Климат-контроль в автомобиле,FALSE,Да,
+1139,PROP_CAR_COLOR,tokenize,tag_635,Цвет автомобиля,FALSE,Да,Да
+1140,PROP_CAR_COLOR_EFFECT,tokenize,tag_636,Эффект цвета,FALSE,,Да
+1198,PROP_CAR_COMPUTER,exist,tag_692,Бортовой компьютер,FALSE,Да,
+1129,PROP_CAR_CREATION_YEAR,int,tag_627,Год выпуска,FALSE,Да,Да
+1180,PROP_CAR_CRUISE_CONTROL,exist,tag_674,Круиз-контроль,FALSE,Да,
+1127,PROP_CAR_CUSTOMS,exist,tag_625,Растаможен,FALSE,Да,Да
+1023,PROP_CAR_DOORS_NUM,int,tag_521,Количество дверей в автомобиле,FALSE,Да,Да
+1183,PROP_CAR_DRIVER_SEAT_ADJUSTING,tokenize,tag_677_arr,Регулировка сиденья водителя,TRUE,Да,
+1153,PROP_CAR_DRIVE_TYPE,tokenize_multi,tag_647,Тип привода автомобиля,FALSE,Да,Да
+1158,PROP_CAR_EBA,exist,tag_652,Помощь при экстренном торможении (EBA/Break assist),FALSE,,
+1159,PROP_CAR_EBD,exist,tag_653,Система электронного распределения тормозных усилий (EBD / EBV),FALSE,,
+1160,PROP_CAR_EDS,exist,tag_654,Система блокировки дифференциала (EDS),FALSE,,
+1188,PROP_CAR_ELECTRIC_MIRROR,exist,tag_682,Электрические зеркала,FALSE,Да,
+1187,PROP_CAR_ELECTRIC_WINDOW,tokenize,tag_681,Электрические стеклоподъёмники,FALSE,Да,
+1148,PROP_CAR_ENGINE_FUEL_INJECTION,tokenize,tag_644,Тип впрыска топлива,FALSE,,
+5102,PROP_CAR_ENGINE_INTERCOOLER,exist,tag_763,Наличие интеркулера в автомобиле,FALSE,,
+1151,PROP_CAR_ENGINE_POWER,int,tag_646,Мощность двигателя,FALSE,Да,Да
+1147,PROP_CAR_ENGINE_TYPE,tokenize_multi,tag_643,Тип двигателя,FALSE,Да,Да
+1149,PROP_CAR_ENGINE_VOL,float,tag_645,Объем двигателя,FALSE,,
+4137,PROP_CAR_ENGINE_VOL_LITRES,float,tag_757,Объем двигателя в литрах.,FALSE,,
+5790,PROP_CAR_ENGINE_VOL_LITRES_ROUNDED,float,tag_5790,Округленный объем двигателя в литрах.,FALSE,Да,Да
+1150,PROP_CAR_ENGINE_VOL_MEASURE,measure,tag_645,Ед. изм. объема двигателя,FALSE,,
+1103,PROP_CAR_EQUIPMENT_NAME,tokenize_multi,tag_811,Название комплектации автомобиля,FALSE,,
+1161,PROP_CAR_ESP,exist,tag_655,Система курсовой стабилизации (ESP / ESC / DSC / VSA),FALSE,,
+1172,PROP_CAR_FOGLIGHT,exist,tag_666,Противотуманные фары,FALSE,Да,
+5675,PROP_CAR_FUEL_CONSUMPTION_CYCLE,float,tag_5675_arr,Расход топлива в смешанном цикле (л/100 км),TRUE,,
+5690,PROP_CAR_FUEL_RANGE_CITY,float,tag_5690_arr,Запас хода по городу,TRUE,,
+5691,PROP_CAR_FUEL_RANGE_CONSUMPTION,float,tag_5691_arr,Запас ход в смешенном цикле,TRUE,,
+5692,PROP_CAR_FUEL_RANGE_ROAD,float,tag_5692_arr,Запас хода по трассе,TRUE,,
+5104,PROP_CAR_GEAR_STEPS,int,tag_764,Количество ступеней коробки передач,FALSE,,
+1154,PROP_CAR_GEAR_TYPE,tokenize,tag_648,Тип коробки передач,FALSE,Да,Да
+1114,PROP_CAR_GENERATION_TYPE,tokenize_multi,tag_813,Название поколения автомобиля,FALSE,Да,Да
+1197,PROP_CAR_GPS,exist,tag_691,Навигационная система (GPS),FALSE,Да,
+1199,PROP_CAR_HANDSFREE,exist,tag_693,Гарнитура,FALSE,,
+1185,PROP_CAR_HEAT_MIRROR,exist,tag_679,Обогрев зеркал,FALSE,Да,
+1186,PROP_CAR_HEAT_SEAT,tokenize,tag_680,Обогрев сидений,FALSE,Да,
+1201,PROP_CAR_IMMOBILISER,exist,tag_695,Иммобилайзер,FALSE,Да,
+5182,PROP_CAR_IMPORT_YEAR,int,tag_767,Год ввоза в РФ,FALSE,,
+1205,PROP_CAR_ISGAS,exist,tag_699,Газобаллонное оборудование,FALSE,,
+1118,PROP_CAR_IS_NEW,exist,tag_616,Автомобиль новый,FALSE,Да,Да
+1174,PROP_CAR_LAMP_WASHER,exist,tag_668,Омыватели фар,FALSE,,
+1176,PROP_CAR_LEATHER_WHEEL,exist,tag_670,Кожаный руль,FALSE,,
+1190,PROP_CAR_LIGHT_SENSOR,exist,tag_684,Датчик света,FALSE,,
+1171,PROP_CAR_LIGHT_TYPE,tokenize,tag_665,Тип автомобильных фар,FALSE,Да,
+1166,PROP_CAR_LOWMELT_DISK,exist,tag_660,Легкосплавные диски,FALSE,Да,
+1072,PROP_CAR_MAX_SPEED,float,tag_570,Максимальная скорость автомобиля,FALSE,,
+1135,PROP_CAR_MILEAGE,float,tag_633,Пробег,FALSE,Да,Да
+1009,PROP_CAR_MODEL,tokenize_multi,tag_507,Модель автомобиля,FALSE,Да,Да
+1034,PROP_CAR_MODIFICATION_TYPE,tokenize_multi,tag_532,Полное название модификации автомобиля,FALSE,,Да
+5408,PROP_CAR_PANORAMIC_ROOF,bool,tag_5408,Панорамная крыша,FALSE,,
+1191,PROP_CAR_PARK_SENSOR,exist,tag_685,Наличие парктроника,FALSE,,
+1184,PROP_CAR_PASSENGER_SEAT_ADJUSTING,tokenize,tag_678_arr,Регулировка сиденья пассажира,TRUE,Да,
+1181,PROP_CAR_POWERSTREERING,tokenize,tag_675,Усилитель руля,FALSE,Да,
+3290,PROP_CAR_PRODUCTION_COUNTRY,tokenize,tag_766,Страна сборки (производства),FALSE,,
+5100,PROP_CAR_PSEUDO_MODEL,tokenize,tag_761,Псевдомодель автомобиля,FALSE,Да,
+1189,PROP_CAR_RAIN_SENSOR,exist,tag_683,Датчик дождя,FALSE,,
+5687,PROP_CAR_REARTRACK,float,tag_5687_arr,Колея задних колёс (мм),TRUE,,
+1175,PROP_CAR_SALON,tokenize,tag_669,Обивка салона,FALSE,Да,
+5657,PROP_CAR_SEATSCOUNT,int,tag_5657,Количество мест,FALSE,Да,Да
+5674,PROP_CAR_SITE_CITYFUELRATE,float,tag_5674,Расход топлива в городе (л/100 км),FALSE,,
+1134,PROP_CAR_STATE,tokenize,tag_632,Состояние автомобиля,FALSE,Да,Да
+5448,PROP_CAR_STNDRT_OPT_CHILD_SAFETY_LOCK,exist,tag_5448,Замок для безопасности детей,FALSE,,
+5447,PROP_CAR_STNDRT_OPT_CHILD_SEAT_ISOFIX,exist,tag_5447,Крепление детского сидения,FALSE,,
+5444,PROP_CAR_STNDRT_OPT_WHEEL_HEATER,exist,tag_5444,Обогрев рулевого колеса,FALSE,Да,
+5220,PROP_CAR_SUBCLASS,tokenize,tag_770,Подкласс модели,FALSE,,
+1177,PROP_CAR_SUN_ROOF,tokenize,tag_671,Люк,FALSE,Да,
+1162,PROP_CAR_TCS,exist,tag_656,Антипробуксовочная система (ASR / TCS / TRC),FALSE,Да,
+1167,PROP_CAR_TINTEDGLASS,exist,tag_661,Тонированные стекла,FALSE,,
+1170,PROP_CAR_TOWHITCH,exist,tag_664,Фаркоп,FALSE,,
+2273,PROP_CAR_TRUNK_SPACE_MIN,int,tag_750,Минимальный объем автомобильного багажника,FALSE,,
+5689,PROP_CAR_TURNSNUMBER_MIN,int,tag_5689_arr,"Обороты максимальной мощности, мин. (об/мин)",TRUE,,
+5688,PROP_CAR_TURNS_TURNMOMENT_MIN,int,tag_5688_arr,"Обороты максимального крутящего момента, мин. (об/мин)",TRUE,,
+1128,PROP_CAR_VIN,string,tag_626,VIN-код,FALSE,,Да
+5814,PROP_CAR_VIN_CHECKED_STATUS,int,tag_5814,Состояние проверки VIN-автомобиля,FALSE,Да,
+5686,PROP_CAR_WHEELBASE,float,tag_5686_arr,Колёсная база (мм),TRUE,,
+1182,PROP_CAR_WHEEL_ADJUST,tokenize,tag_676,Регулировка руля,FALSE,Да,
+1156,PROP_CAR_WHEEL_TYPE,tokenize,tag_650,Расположение руля,FALSE,Да,Да
+5106,PROP_COMPANY_ID,int,tag_765,Внутренний идентификатор компании автосалона,FALSE,,
+1215,PROP_CONTACT_NAME,tokenize_any,tag_709,Имя контактного лица,FALSE,,Да
+1216,PROP_CONTACT_PHONE,string,tag_710_arr,Номер телефона,TRUE,,
+2345,PROP_CONTACT_PHONE_INFO,object,tag_752_arr,Информация о контактных телефонах,TRUE,,
+2406,PROP_CONTACT_PHONE_TIME,string,,Время звонка,FALSE,,
+5699,PROP_DEALER_HAS_CAR,tokenize,tag_5699,Наличие автомобиля,FALSE,Да,Да
+738,PROP_DEALER_ID,int,tag_740,Внутренний идентификатор автосалона,FALSE,Да,Да
+2398,PROP_DEALER_IS_OFFICIAL,bool,tag_819,Официальный дилер,FALSE,Да,
+5416,PROP_DEALER_IS_STOCK,bool,tag_817,Объявление стоковое,FALSE,,
+2390,PROP_DEALER_NAME,string,tag_793,Название автосалона,FALSE,,
+5423,PROP_DEALER_OFFICIAL_BRANDS,string,,Список официальных марок у продавца,TRUE,,
+5291,PROP_DEALER_SOURCE_ID,int,tag_790,Идентификатор источника дилерских объявлений,FALSE,,
+2367,PROP_DEALER_TARIFF,tokenize,tag_754,Тариф,FALSE,,
+469,PROP_DOC_ID,int,sdocid,Идентификатор,FALSE,,
+5720,PROP_DRIVE_END_DATE,datetime,tag_5720,дата и время окончания услуги Drive,FALSE,,
+5719,PROP_DRIVE_START_DATE,datetime,tag_5719,дата и время начала оказания услуги Drive,FALSE,,
+5712,PROP_EXTERNAL_ID,string,tag_5712,Внешний ID,FALSE,,
+38,PROP_GEO_CITY,geo,tag_38,"Регион, город, населенный пункт",FALSE,Да,"? LTREE, в юле не будет работать вероятно"
+5817,PROP_GEO_POINT,string,tag_5817,Привязка к гео-позиции,FALSE,,Да
+5768,PROP_HAS_VIDEO,bool,tag_5768,Наличие видео,FALSE,,
+21,PROP_IMAGE_EXISTS,bool,tag_21,Признак присутствия фотографии,FALSE,Да,? в юле обязательны фото
+5784,PROP_INFO_ACTIVATED_DATE,datetime,tag_5784,Дата и время первой публикации,FALSE,,
+5247,PROP_INFO_ACTUALIZATION_DATE,datetime,tag_772,Дата актуализации,FALSE,,
+5309,PROP_INFO_CHANGE_DATE,datetime,tag_800,Дата последнего фактического изменения свойств,FALSE,,
+18,PROP_INFO_DATE,datetime,tag_18,Дата публикации,FALSE,,Да
+200,PROP_INFO_IMAGE_URL,string,prop_200_arr,Локальный адрес фотографии,TRUE,,
+5261,PROP_INFO_INDEXING_DATE,datetime,tag_776,Дата попадания объявления в индекс (Дата добавления),FALSE,Да,? в юле есть полеdate_published
+5370,PROP_INFO_REAL_CHANGE_DATE,datetime,tag_812,Дата изменения пользовательских данных (Без учета метаданных),FALSE,,
+1228,PROP_INFO_UPDATE_DATE,datetime,tag_722,Дата последнего фактического изменения,FALSE,,
+3574,PROP_INFO_VIEW_PLACE,string,prop_3574,Место осмотра автомобиля,FALSE,,Да
+5362,PROP_INTERIORS_SOURCE_PATH,string,tag_5362,Исходники интерьера,FALSE,,
+5265,PROP_IS_VIP_OFFER,bool,tag_778,VIP предложение,FALSE,,
+52,PROP_KLADDR_ID,string,,Идентификатор населенного пункта,FALSE,,
+5380,PROP_MODERATOR_ID,int,tag_822,Идентификатор модератора,FALSE,,
+5680,PROP_OBJECT_SOURCE,int,tag_5680,источник внутреннего объявления,FALSE,,
+5186,PROP_OWNERS_BY_PTS,int,tag_768,количество владельцев по ПТС,FALSE,Да,Да
+5782,PROP_PLACEMENT_ID,int,tag_5782,Идентификатор размещения коммерческого аккаунта,FALSE,,
+5354,PROP_PREMIUM_END_DATE,datetime,tag_805,дата и время окончания услуги Премиум.,FALSE,,
+5352,PROP_PREMIUM_START_DATE,datetime,tag_804,дата и время начала оказания услуги Премиум,FALSE,,
+2,PROP_PRICE_VALUE,int,tag_2,Цена,FALSE,Да,Да
+5697,PROP_PROCESSED_IMAGES,string,prop_5697_arr,Обработанные фотографий,TRUE,,Да
+5307,PROP_PUB_DATE_END,datetime,tag_799,Дата окончания публикации,FALSE,,
+5709,PROP_SERVICE_ANONYM_PHONE,string,tag_5709,Анонимный номер,FALSE,,
+5820,PROP_SERVICE_ANONYM_PHONES,string,tag_5820_arr,массив прокси-номеров салона для объявления,TRUE,,
+5711,PROP_SERVICE_ANONYM_PHONE_END_DATE,datetime,tag_5711,Дата окончания действия услуги анонимный номер,FALSE,,
+5819,PROP_SERVICE_ANONYM_PHONE_INFO,string,tag_5819,данные назначенных прокси-номеров,FALSE,,
+5710,PROP_SERVICE_ANONYM_PHONE_START_DATE,datetime,tag_5710,Дата начала действия услуги анонимный номер,FALSE,,
+5356,PROP_SERVICE_PACKAGE,int,tag_801,идентификатор оказываемого пакета услуг,FALSE,,
+5360,PROP_SERVICE_PACKAGE_END_DATE,datetime,tag_803,дата и время окончания действия пакета услуг.,FALSE,,
+5358,PROP_SERVICE_PACKAGE_START_DATE,datetime,tag_802,дата и время начала действия пакета услуг.,FALSE,,
+5684,PROP_SITE_BAGGAGEVOL_ABSTRACT,tokenize,tag_5684_arr,Размер багажника,TRUE,,
+5724,PROP_SITE_CYLINDERDIAMETER,float,tag_5724,Диаметр цилиндра (мм),FALSE,,
+5725,PROP_SITE_PISTONSTROKE,float,tag_5725,Ход поршня (мм),FALSE,,
+5726,PROP_SITE_WIDGHTFRONTAXLE,float,tag_5726,Нагрузка на переднюю ось (кг),FALSE,,
+5727,PROP_SITE_WIDGHTREARAXLE,float,tag_5727,Нагрузка на заднюю ось (кг),FALSE,,
+5348,PROP_TURBO_END_DATE,datetime,tag_809,дата и время окончания услуги Поднятие.,FALSE,,
+5346,PROP_TURBO_START_DATE,datetime,tag_808,дата и время начала оказания услуги Поднятие,FALSE,,
+737,PROP_USER_ID,int,tag_739,Внутренний идентификатор пользователя,FALSE,,Да
+5267,PROP_VIP_END_DATE,datetime,tag_779,Окончание периода VIP ротации,FALSE,,
+5350,PROP_VIP_START_DATE,datetime,tag_806,дата и время начала оказания услуги VIP,FALSE,,
+25,PROP_WARRANTY,exist,tag_25,Гарантия,FALSE,Да,Да
+5821,PROP_YOULA_ID,string,tag_5821,Идентификатор объявления в Юле,FALSE,,
+5824,PROP_YOULA_USER_ID,string,tag_5824,Идентификатор юлы для владельца объявления,FALSE,,
+5659,PROP_CAR_ALLOWABLEFULLMASS,float,tag_1066_hstore,Допустимая полная масса (кг),FALSE,,
+5665,PROP_CAR_BODYHEIGHT,float,tag_1066_hstore,Высота (мм),FALSE,,
+5663,PROP_CAR_BODYLENGTH,float,tag_1066_hstore,Длина (мм),FALSE,,
+5664,PROP_CAR_BODYWIDTH,float,tag_1066_hstore,Ширина (мм),FALSE,,
+5653,PROP_CAR_CARGOTANKHEIGHT,float,tag_1066_hstore,Высота грузового отсека (мм),FALSE,,
+5655,PROP_CAR_CARGOTANKLENGTH,float,tag_1066_hstore,Длина грузового отсека (мм),FALSE,,
+5654,PROP_CAR_CARGOTANKVOL,float,tag_1066_hstore,Объём грузового отсека (м<sup>3</sup>),FALSE,,
+5652,PROP_CAR_CARGOTANKWIDTH,float,tag_1066_hstore,Ширина грузового отсека (мм),FALSE,,
+1066,PROP_CAR_CLEARANCE,float,tag_1066_hstore,Дорожный просвет,FALSE,,
+5670,PROP_CAR_CYLINDERS,int,tag_1066_hstore,Количество цилиндров,FALSE,,
+5643,PROP_CAR_CYLINDERSLAYOUT,tokenize,tag_1066_hstore,Конфигурация двигателя,FALSE,,
+5669,PROP_CAR_CYLINDERSVALVES,int,tag_1066_hstore,Количество клапанов на цилиндр,FALSE,,
+5633,PROP_CAR_ECOSTANDARD,tokenize,tag_1066_hstore,Экологический стандарт,FALSE,,
+5631,PROP_CAR_FRONTBRAKE,tokenize,tag_1066_hstore,Передние тормоза,FALSE,,
+5632,PROP_CAR_FRONTSUSPENSION,tokenize,tag_1066_hstore,Передняя подвеска,TRUE,,
+5662,PROP_CAR_FRONTTRACK,float,tag_1066_hstore,Колея передних колёс (мм),FALSE,,
+5642,PROP_CAR_FUEL,tokenize,tag_1066_hstore,Рекомендуемое топливо,TRUE,,
+5671,PROP_CAR_FUELTANKVOL,float,tag_1066_hstore,Объём топливного бака (л),FALSE,,
+5635,PROP_CAR_HEAD_TYRE_DIAMETER,tokenize,tag_1066_hstore,Диаметр передней шины,TRUE,,
+5636,PROP_CAR_HEAD_TYRE_HEIGHT,tokenize,tag_1066_hstore,Высота профиля передней шины,TRUE,,
+5634,PROP_CAR_HEAD_TYRE_WIDTH,tokenize,tag_1066_hstore,Ширина профиля переднего шины,TRUE,,
+5638,PROP_CAR_HEAD_WHEEL_DISC_DIAMETER,tokenize,tag_1066_hstore,Диаметр переднего обода,TRUE,,
+5640,PROP_CAR_HEAD_WHEEL_DISC_FIX_HOLES_COUNT,tokenize,tag_1066_hstore,Количество крепёжных отверстий переднего диска,FALSE,,
+5637,PROP_CAR_HEAD_WHEEL_DISC_FIX_HOLES_DIAMETER,tokenize,tag_1066_hstore,Диаметр расположения отверстий переднего диска (PCD),FALSE,,
+5639,PROP_CAR_HEAD_WHEEL_DISC_WIDTH,tokenize,tag_1066_hstore,Ширина переднего обода,TRUE,,
+5651,PROP_CAR_LOADINGHEIGHT,float,tag_1066_hstore,Погрузочная высота (мм),FALSE,,
+5658,PROP_CAR_PAYLOAD,float,tag_1066_hstore,Грузоподъёмность (кг),FALSE,,
+5630,PROP_CAR_REARBRAKE,tokenize,tag_1066_hstore,Задние тормоза,FALSE,,
+5628,PROP_CAR_REARSUSPENSION,tokenize,tag_1066_hstore,Задняя подвеска,TRUE,,
+5672,PROP_CAR_ROADFUELRATE,float,tag_1066_hstore,Расход топлива на шоссе (л/100 км),FALSE,,
+5660,PROP_CAR_TRUNK_SPACE_MAX,float,tag_1066_hstore,Максимальный объём багажника (л),FALSE,,
+5673,PROP_CAR_TURNINGDIAMETER,float,tag_1066_hstore,Диаметр разворота (м),FALSE,,
+5667,PROP_CAR_TURNMOMENT,float,tag_1066_hstore,Максимальный крутящий момент (Н•м),FALSE,,
+5666,PROP_CAR_TURNSNUMBER_MAX,int,tag_1066_hstore,"Обороты максимальной мощности, макс. (об/мин)",FALSE,,
+5668,PROP_CAR_TURNS_TURNMOMENT_MAX,int,tag_1066_hstore,"Обороты максимального крутящего момента, макс. (об/мин)",FALSE,,
+5661,PROP_CAR_UNLADENMASS,float,tag_1066_hstore,Снаряженная масса (кг),FALSE,,
+5723,PROP_SITE_ALLOWABLEROADTRAINMASS,float,tag_1066_hstore,Разрешённая масса автопоезда (кг),FALSE,,
