@@ -51,9 +51,9 @@ func drawTree(out *os.File, path string, printFiles bool, deepnessNode string) e
 			if fileInfo.Size() == 0 {
 				fileSize = "empty"
 			} else {
-				fileSize = string(fileInfo.Size())
+				fileSize = fmt.Sprintf("%db", fileInfo.Size())
 			}
-			outputFormat = fmt.Sprintf("%s%s──────%s (%sb)\n", deepnessNode, nodeType, fileInfo.Name(), fileSize)
+			outputFormat = fmt.Sprintf("%s%s──────%s (%s)\n", deepnessNode, nodeType, fileInfo.Name(), fileSize)
 		} else {
 			outputFormat = fmt.Sprintf("%s%s──────%s\n", deepnessNode, nodeType, fileInfo.Name())
 		}
