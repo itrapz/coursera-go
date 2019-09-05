@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 )
@@ -20,12 +21,12 @@ func main() {
 	}
 }
 
-func dirTree(out *os.File, path string, printFiles bool) error {
+func dirTree(out io.Writer, path string, printFiles bool) error {
 	var deepnessNode string
 	return drawTree(out, path, printFiles, deepnessNode)
 }
 
-func drawTree(out *os.File, path string, printFiles bool, deepnessNode string) error {
+func drawTree(out io.Writer, path string, printFiles bool, deepnessNode string) error {
 	filesInfo, err := ioutil.ReadDir(path)
 	if err != nil {
 		return err
@@ -57,9 +58,7 @@ func drawTree(out *os.File, path string, printFiles bool, deepnessNode string) e
 		} else {
 			outputFormat = fmt.Sprintf("%s%s──────%s\n", deepnessNode, nodeType, fileInfo.Name())
 		}
-
-		out.WriteString(outputFormat)
-
+		out.Write([]byte(outputFormat))
 		if fileInfo.IsDir() && dirHasFiles(path+"/"+fileInfo.Name()) {
 			drawTree(out, path+"/"+fileInfo.Name(), printFiles, deepnessNode+deepnessPattern)
 		}
