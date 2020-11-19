@@ -39,7 +39,7 @@ func drawTree(out io.Writer, path string, printFiles bool, deepnessNode string) 
 
 		if lastElement == fileInfo {
 			nodeType = "└"
-			deepnessPattern = " \t"
+			deepnessPattern = "\t"
 		} else {
 			nodeType = "├"
 			deepnessPattern = "│\t"
