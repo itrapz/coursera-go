@@ -55,8 +55,9 @@ func main() {
 	var received uint32
 	jobs := []job{
 		job(func(in, out chan interface{}) {
+			fmt.Println("job1-start")
 			out <- 1
-			fmt.Println("job1-out")
+			fmt.Println("job1-out-was-updated")
 			//fmt.Println(in)
 			time.Sleep(10 * time.Millisecond)
 			currRecieved := atomic.LoadUint32(&received)
@@ -73,12 +74,23 @@ func main() {
 		}),
 
 		job(func(in, out chan interface{}) {
-			fmt.Println("job2-in")
+			fmt.Println("job2-start")
 			//fmt.Println(in)
 			for _ = range in {
 				atomic.AddUint32(&received, 1)
-				fmt.Println("job2-received")
-				fmt.Println(received)
+				fmt.Printf("job2-received %d\n", received)
+				out <- in
+			}
+		}),
+
+		job(func(in, out chan interface{}) {
+			fmt.Println("job3-start")
+			fmt.Println("job3-in")
+			//fmt.Println(in)
+			for _ = range in {
+				atomic.AddUint32(&received, 1)
+				fmt.Printf("job3-received %d\n", received)
+
 			}
 		}),
 	}
@@ -89,27 +101,55 @@ func main() {
 	//end := time.Since(start)
 }
 
-func ExecutePipeline(job ...job) {
+func ExecutePipeline(jobs ...job) {
 	in := make(chan interface{}, 5)
 	out := make(chan interface{}, 5)
-	wg := &sync.WaitGroup{}
 
-	wg.Add(1)
+	cancelCh := make(chan struct{})
+
+	//wg := &sync.WaitGroup{}
+
 	go func(in, out chan interface{}) {
-		for _, job := range job {
-			job(in, out)
-			fmt.Println("out")
-			fmt.Println(out)
-			in <- out
-			fmt.Println("in2")
-			fmt.Println(in)
-
+		val := 0
+		for {
+			select {
+			case in <- out:
+				val++
+				fmt.Println(in)
+				fmt.Printf("val = %d", val)
+				fmt.Println()
+			case <-cancelCh:
+				return
+			}
 		}
-		//fmt.Println("in")
-		//fmt.Println(in)
-
-		wg.Done()
 	}(in, out)
+
+	for index, job := range jobs {
+		if index == len(jobs)-1 {
+			fmt.Printf("%d = indexxx jobs\n", index+1)
+			cancelCh <- struct{}{}
+			break
+		}
+
+		fmt.Printf("job %d start\n", index+1)
+		go job(in, out)
+	}
+	/*
+		wg.Add(1)
+		go func(in, out chan interface{}) {
+
+
+
+			for _out := range out {
+				wg.Add(1)
+				in <- _out
+			}
+			wg.Done()
+		}(in, out)
+	*/
+
+	//fmt.Println("in")
+	//fmt.Println(in)
 
 	/*
 		for _, job := range job {
@@ -138,7 +178,7 @@ func ExecutePipeline(job ...job) {
 		}
 	*/
 
-	wg.Wait()
+	//wg.Wait()
 
 	/*
 
