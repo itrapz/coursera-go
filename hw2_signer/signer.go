@@ -2,16 +2,11 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"sync/atomic"
-	"time"
-
-	//"time"
-
-	//"time"
-
-	//"runtime"
 	"strings"
+	"sync"
+	"time"
+	//"time"
+	//"time"
 )
 
 const (
@@ -20,7 +15,6 @@ const (
 	quotaLimit    = 2
 )
 
-/*
 func main() {
 	wg := &sync.WaitGroup{}
 	quotaCh := make(chan struct{}, quotaLimit) // ratelim.go
@@ -31,7 +25,7 @@ func main() {
 	time.Sleep(time.Millisecond)
 	wg.Wait()
 }
-*/
+
 func startWorker(in int, wg *sync.WaitGroup, quotaCh chan struct{}) {
 	quotaCh <- struct{}{} // ratelim.go, берём свободный слот
 	defer wg.Done()
@@ -50,6 +44,7 @@ func formatWork(in, j int) string {
 		"iter", j, strings.Repeat("*", j))
 }
 
+/*
 func main() {
 	var ok = true
 	var received uint32
@@ -100,12 +95,12 @@ func main() {
 	//fmt.Scanln()
 	//end := time.Since(start)
 }
-
+*/
 func ExecutePipeline(jobs ...job) {
 	in := make(chan interface{}, 5)
 	out := make(chan interface{}, 5)
 
-	cancelCh := make(chan struct{})
+	cancelCh := make(chan bool)
 
 	//wg := &sync.WaitGroup{}
 
@@ -115,9 +110,9 @@ func ExecutePipeline(jobs ...job) {
 			select {
 			case in <- out:
 				val++
-				fmt.Println(in)
-				fmt.Printf("val = %d", val)
-				fmt.Println()
+
+				fmt.Printf("val = %d\n", val)
+
 			case <-cancelCh:
 				return
 			}
@@ -125,14 +120,14 @@ func ExecutePipeline(jobs ...job) {
 	}(in, out)
 
 	for index, job := range jobs {
-		if index == len(jobs)-1 {
-			fmt.Printf("%d = indexxx jobs\n", index+1)
-			cancelCh <- struct{}{}
-			break
-		}
 
 		fmt.Printf("job %d start\n", index+1)
 		go job(in, out)
+		if index == len(jobs)-1 {
+			fmt.Printf("%d = indexxx jobs\n", index+1)
+			cancelCh <- true
+			break
+		}
 	}
 	/*
 		wg.Add(1)
