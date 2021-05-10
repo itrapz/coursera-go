@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 	//"time"
 	//"time"
@@ -15,6 +16,7 @@ const (
 	quotaLimit    = 2
 )
 
+/*
 func main() {
 	wg := &sync.WaitGroup{}
 	quotaCh := make(chan struct{}, quotaLimit) // ratelim.go
@@ -25,7 +27,7 @@ func main() {
 	time.Sleep(time.Millisecond)
 	wg.Wait()
 }
-
+*/
 func startWorker(in int, wg *sync.WaitGroup, quotaCh chan struct{}) {
 	quotaCh <- struct{}{} // ratelim.go, берём свободный слот
 	defer wg.Done()
@@ -44,7 +46,6 @@ func formatWork(in, j int) string {
 		"iter", j, strings.Repeat("*", j))
 }
 
-/*
 func main() {
 	var ok = true
 	var received uint32
@@ -95,7 +96,7 @@ func main() {
 	//fmt.Scanln()
 	//end := time.Since(start)
 }
-*/
+
 func ExecutePipeline(jobs ...job) {
 	in := make(chan interface{}, 5)
 	out := make(chan interface{}, 5)
