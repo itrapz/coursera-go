@@ -2,249 +2,85 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"sort"
+	"strconv"
 	"sync"
-	"sync/atomic"
-	"time"
-	//"time"
-	//"time"
 )
 
 const (
-	iterationsNum = 2
-	goroutinesNum = 2
-	quotaLimit    = 2
+	goroutines = 2
 )
 
-/*
-func main() {
-	wg := &sync.WaitGroup{}
-	quotaCh := make(chan struct{}, quotaLimit) // ratelim.go
-	for i := 0; i < goroutinesNum; i++ {
-		wg.Add(1)
-		go startWorker(i, wg, quotaCh)
-	}
-	time.Sleep(time.Millisecond)
-	wg.Wait()
-}
-*/
-func startWorker(in int, wg *sync.WaitGroup, quotaCh chan struct{}) {
-	quotaCh <- struct{}{} // ratelim.go, берём свободный слот
-	defer wg.Done()
-	for j := 0; j < iterationsNum; j++ {
+var combinedResults []string
+var globalIndex = -1
 
-		//fmt.Printf(formatWork(in, j))
-		select {}
-	}
-	<-quotaCh // ratelim.go, возвращаем слот
+type log struct {
+	id  string
+	log string
 }
 
-func formatWork(in, j int) string {
-	return fmt.Sprintln(strings.Repeat(" ", in), "*",
-		strings.Repeat(" ", goroutinesNum-in),
-		"th", in,
-		"iter", j, strings.Repeat("*", j))
-}
+var logs = map[string]*log{}
+var mutex = &sync.Mutex{}
 
 func main() {
-	var ok = true
-	var received uint32
 	jobs := []job{
 		job(func(in, out chan interface{}) {
-			fmt.Println("job1-start")
-			out <- 1
-			fmt.Println("job1-out-was-updated")
-			//fmt.Println(in)
-			time.Sleep(10 * time.Millisecond)
-			currRecieved := atomic.LoadUint32(&received)
-			fmt.Println("job1-received")
-			fmt.Println(received)
-			// в чем тут суть
-			// если вы накапливаете значения, то пока вся функция не отрабоатет - дальше они не пойдут
-			// тут я проверяю, что счетчик увеличился в следующей функции
-			// это значит что туда дошло значение прежде чем текущая функция отработала
-			if currRecieved == 0 {
-				ok = false
-			}
-
+			SingleHash(in, out)
 		}),
-
 		job(func(in, out chan interface{}) {
-			fmt.Println("job2-start")
-			//fmt.Println(in)
-			for _ = range in {
-				atomic.AddUint32(&received, 1)
-				fmt.Printf("job2-received %d\n", received)
-				out <- in
-			}
+			MultiHash(in, out)
 		}),
-
 		job(func(in, out chan interface{}) {
-			fmt.Println("job3-start")
-			fmt.Println("job3-in")
-			//fmt.Println(in)
-			for _ = range in {
-				atomic.AddUint32(&received, 1)
-				fmt.Printf("job3-received %d\n", received)
-
-			}
+			CombineResults(in, out)
 		}),
 	}
-	//start := time.Now()
-
-	ExecutePipeline(jobs...)
-	//fmt.Scanln()
-	//end := time.Since(start)
-}
-
-func ExecutePipeline(jobs ...job) {
-	in := make(chan interface{}, 5)
-	out := make(chan interface{}, 5)
-
-	cancelCh := make(chan bool)
-
-	//wg := &sync.WaitGroup{}
-
-	go func(in, out chan interface{}) {
-		val := 0
-		for {
-			select {
-			case in <- out:
-				val++
-
-				fmt.Printf("val = %d\n", val)
-
-			case <-cancelCh:
-				return
-			}
-		}
-	}(in, out)
-
-	for index, job := range jobs {
-
-		fmt.Printf("job %d start\n", index+1)
-		go job(in, out)
-		if index == len(jobs)-1 {
-			fmt.Printf("%d = indexxx jobs\n", index+1)
-			cancelCh <- true
-			break
-		}
-	}
-	/*
+	wg := &sync.WaitGroup{}
+	for index := 0; index < goroutines; index++ {
 		wg.Add(1)
-		go func(in, out chan interface{}) {
-
-
-
-			for _out := range out {
-				wg.Add(1)
-				in <- _out
-			}
-			wg.Done()
-		}(in, out)
-	*/
-
-	//fmt.Println("in")
-	//fmt.Println(in)
-
-	/*
-		for _, job := range job {
-			fmt.Println("durr1")
-			job(in, out)
-			in <- out
-
-
-
-		}
-	*/
-	/*
-		for _, job1 := range job {
-			wg.Add(1)
-			go func(func(in, out chan interface{})) {
-				//fmt.Println("in")
-				//fmt.Println(in)
-				job1(in, out)
-				fmt.Println("out")
-				fmt.Println(out)
-				in <- out
-				fmt.Println("in2")
-				fmt.Println(in)
-				wg.Done()
-			}(job1)
-		}
-	*/
-
-	//wg.Wait()
-
-	/*
-
-		for _, job := range job {
-			go func() {
-				for _, n := range nums {
-					out <- n
-				}
-				close(out)
-			}()
-			go job(in, out)
-
-			change <-out
-
-			in <- change
-			//fmt.Print( )
-			//SingleHash(in, out)
-			//data, ok := dataRaw.(string)
-			//println()out
-		}
-	*/
-
-	/*
-		select {
-		case val := <-in:
-			fmt.Println("ch1 val", val)
-		case out <- 1:
-			fmt.Println("put val to out")
-		default:
-			fmt.Println("default case")
-		}
-
-		//runtime.Goshed()
 		go func() {
-			for _, job := range job {
-				job(in, out)
-				//fmt.Print( )
-				SingleHash(in, out)
-				//data, ok := dataRaw.(string)
-				//println()out
-			}
-			close(out)
+			defer wg.Done()
+			ExecutePipeline2(jobs...)
 		}()
+	}
+	wg.Wait()
 
+	// Log print
+	var sortedLogs = map[string]string{}
+	ids := make([]string, 0, len(logs))
 
+	for k, val := range logs {
+		sortedLogs[val.id] = val.log
+		ids = append(ids, logs[k].id)
+	}
+	sort.Strings(ids)
 
-	*/
+	for _, key := range ids {
+		fmt.Println(sortedLogs[key])
+	}
 
-	/*
-
-		return out
-
-
-		for i, job := range job {
-
-			select {
-			case joba
-			case <-ctx.Done():
-				break LOOP
-			case foundBy := <-result:
-				totalFound++
-				fmt.Println("result found by", foundBy)
-			}
+	//Combined results
+	sort.Strings(combinedResults)
+	delimiter := ""
+	fmt.Printf("CombineResults ")
+	for index, val := range combinedResults {
+		if index > 0 {
+			delimiter = "_"
 		}
-	*/
-	//time.Sleep(time.Millisecond)
-	//wg.Wait() // wait_2.go ожидаем, пока waiter.Done() не приведёт счетчик к 0
+		fmt.Printf("%s%s\n", delimiter, val)
+	}
 }
 
-//var SingleHash job
+func ExecutePipeline2(jobs ...job) {
+	in := make(chan interface{}, 1)
+	out := make(chan interface{}, 1)
+	globalIndex++
+	in <- strconv.Itoa(globalIndex)
+	for _, currentJob := range jobs {
+		currentJob(in, out)
+		val := <-out
+		in <- val
+	}
+}
 
 var SingleHash = func(in, out chan interface{}) {
 	dataRaw := <-in
@@ -252,49 +88,89 @@ var SingleHash = func(in, out chan interface{}) {
 	if !ok {
 		panic("can't convert result data to string")
 	}
-	fmt.Println(data)
-	out <- DataSignerCrc32(data) + "~" + DataSignerCrc32(DataSignerMd5(data))
+	const name = "SingleHash"
+
+	var md5 string
+	var crc32md5 string
+	var crc32 string
+
+	dataStrMd5 := make(chan string, 1)
+
+	mutex.Lock()
+	dataStrMd5 <- DataSignerMd5(data)
+	mutex.Unlock()
+
+	wg := &sync.WaitGroup{}
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		md5 = <-dataStrMd5
+		crc32md5 = DataSignerCrc32(md5)
+		close(dataStrMd5)
+	}()
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		crc32 = DataSignerCrc32(data)
+	}()
+
+	wg.Wait()
+
+	result := crc32 + "~" + crc32md5
+
+	localLog := fmt.Sprintf("%s %s data %s\n", data, name, data)
+	localLog += fmt.Sprintf("%s %s md5(data) %s\n", data, name, md5)
+	localLog += fmt.Sprintf("%s %s crc32(md5(data)) %s\n", data, name, crc32md5)
+	localLog += fmt.Sprintf("%s %s crc32(data) %s\n", data, name, crc32)
+	localLog += fmt.Sprintf("%s %s result %s\n", data, name, result)
+
+	logs[result] = &log{data, localLog}
+
+	out <- result
 }
 
 var MultiHash = func(in, out chan interface{}) {
-	/*
-		dataRaw := <- in
-		data, ok := dataRaw.(string)
-		if !ok {
-			panic("can't convert result data to string")
-		}
-		out <- DataSignerCrc32(in.(string) + data) + "~" + DataSignerCrc32(DataSignerMd5(data))
-		return fmt.Sprintln(strings.Repeat(" ", in), "*",
-			strings.Repeat(" ", goroutinesNum-in),
-			"th", in,
-			"iter", j, strings.Repeat("*", j))
-	*/
 	dataRaw := <-in
 	data, ok := dataRaw.(string)
 	if !ok {
-		panic("cant convert result data to string")
+		panic("can't convert result data to string")
 	}
-	out <- DataSignerCrc32(data) + "~" + DataSignerCrc32(DataSignerMd5(data))
+	const Offset = 0
+	const Limit = 6
+
+	var result string
+
+	wg := &sync.WaitGroup{}
+
+	outArr := [Limit]string{}
+	for i := Offset; i < Limit; i++ {
+		wg.Add(1)
+		go func(i int) {
+			defer wg.Done()
+			outArr[i] = DataSignerCrc32(strconv.Itoa(i) + data)
+		}(i)
+	}
+
+	wg.Wait()
+
+	log := logs[data]
+	for i := Offset; i < Limit; i++ {
+		result += outArr[i]
+		logs[data].log += fmt.Sprintf("%s MultiHash: crc32(th+step1)) %d %s\n", data, i, outArr[i])
+	}
+	log.log += fmt.Sprintf("%s MultiHash result: %s\n", data, result)
+
+	out <- result
 }
 
 var CombineResults = func(in, out chan interface{}) {
-
+	val := <-in
+	data, ok := val.(string)
+	if !ok {
+		panic("can't convert result data to string")
+	}
+	combinedResults = append(combinedResults, data)
+	out <- ""
 }
-
-//(in, out chan interface{}) {
-
-/*
-func SingleHash(data string) string {
-	return DataSignerCrc32(data)
-}
-*/
-
-/*
-
-func job(f func) string {
-	return fmt.Sprintln(strings.Repeat(" ", in), "*",
-		strings.Repeat(" ", goroutinesNum-in),
-		"th", in,
-		"iter", j, strings.Repeat("*", j))
-}
-*/
