@@ -39,7 +39,7 @@ func main() {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			ExecutePipeline2(jobs...)
+			ExecutePipeline(jobs...)
 		}()
 	}
 	wg.Wait()
@@ -70,7 +70,7 @@ func main() {
 	}
 }
 
-func ExecutePipeline2(jobs ...job) {
+func ExecutePipeline(jobs ...job) {
 	in := make(chan interface{}, 1)
 	out := make(chan interface{}, 1)
 	globalIndex++
